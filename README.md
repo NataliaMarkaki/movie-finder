@@ -7,6 +7,7 @@ A simple UI enabling searching for movies within the Movie DB
 * Babel
 * Webpack
 * Yarn
+* Styled Components
 
 ## Usage instructions
 
