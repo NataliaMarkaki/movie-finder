@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { searchMovies } from './services/searchMovies';
 
@@ -7,21 +7,27 @@ import { Header } from './App.styles';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const fetchMovieData = useCallback(async () => {
+    const result = await searchMovies(searchTerm);
+    setMovies(result);
+  }, [searchTerm])
 
   useEffect(() => {
     async function fetchData() {
-      const result = await searchMovies('harry');
-      setMovies(result);
+      if (Boolean(searchTerm)) {
+        await fetchMovieData();
+      }
     }
-   
+
     fetchData();
-  }, []);
+  }, [searchTerm]);
 
   console.log(movies)
 
   return <>
     <Header>
-      <SearchBar />
+      <SearchBar setSearchTerm={setSearchTerm} />
     </Header>
   </>
 };
