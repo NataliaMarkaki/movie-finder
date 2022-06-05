@@ -7,10 +7,7 @@ const SearchBar = ({ setSearchTerm }) => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-
-    if (Boolean(searchQuery)) {
-      setSearchTerm(searchQuery);
-    }
+    setSearchTerm(searchQuery);
   }
 
   const onInputChange = (e) => {
@@ -19,7 +16,7 @@ const SearchBar = ({ setSearchTerm }) => {
 
   return <Form onSubmit={onFormSubmit} role="search">
     <Label htmlFor="search">Search for a movie</Label>
-    <Input id="search" type="search" placeholder="Type something..." required value={searchQuery} onChange={onInputChange} />
+    <Input id="search" type="search" placeholder="Type something..." value={searchQuery} onChange={onInputChange} />
     <Button type="submit">Search</Button>
   </Form>
 };
