@@ -1,47 +1,72 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { colours } from '../../constants.styles';
+import { colours, media } from "../../constants.styles";
 
 export const CardWrapper = styled.div`
-  width: 40rem;
-  height: 17rem;
   border-radius: 0.625rem;
   display: inline-flex;
   margin: 0.625rem;
+  width: 100%;
+
+  @media screen and (min-width: ${media.medium}) {
+    width: 40rem;
+    height: 17rem;
+    overflow: scroll;
+  }
 `;
 
 export const ImageWrapper = styled.div`
-  width: 30%;
-  height: 17rem;
-  overflow: hidden;
-  background: ${colours.transparent};
+  display: none;
+
+  @media screen and (min-width: ${media.medium}) {
+    display: block;
+    width: 30%;
+    height: 17rem;
+    height: 17rem;
+    overflow: hidden;
+    background: ${colours.transparent};
+  }
 `;
 
 export const Image = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 0.625rem 0 0 0.625rem;
-  background: ${(({ src }) => `url("${src}") no-repeat center center`)};
-  background-size: cover;
-  overflow: hidden;
+  display: none;
+
+  @media screen and (min-width: ${media.medium}) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.625rem 0 0 0.625rem;
+    background: ${({ src }) => `url("${src}") no-repeat center center`};
+    background-size: cover;
+    overflow: hidden;
+  }
 `;
 
 export const Description = styled.div`
-  width: 70%;
-  height: 17rem;
   background: ${colours.gray};
-  border-radius: 0 0.625rem 0.625rem 0;
+  border-radius: 0.625rem;
   padding: 0 1rem 0 1rem;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  width: 100%;
+
+  @media screen and (min-width: ${media.medium}) {
+    width: 70%;
+    height: 17rem;
+    border-radius: 0 0.625rem 0.625rem 0;
+    overflow: scroll;
+  }
 `;
 
 export const Title = styled.h1`
   color: ${colours.black};
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   letter-spacing: 1px;
+
+  @media screen and (min-width: ${media.medium}) {
+    text-align: left;
+  }
 `;
 
 export const Text = styled.p`
