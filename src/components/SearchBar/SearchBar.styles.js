@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { colours, media } from '../../constants.styles';
+import { colours, media } from "../../constants.styles";
 
 export const Form = styled.form`
   width: 100%;
   display: flex;
   font-size: 1.8rem;
-  font-family: 'Lato', sans-serif;
   flex-direction: column;
   align-items: center;
 
@@ -31,7 +30,7 @@ export const Input = styled.input`
   padding: 1rem 0.75rem;
   border-radius: 0.2rem;
   border: 0;
-  background-color: ${colours.gray} ;
+  background-color: ${colours.gray};
 `;
 
 export const Button = styled.button`
