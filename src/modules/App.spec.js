@@ -35,6 +35,7 @@ describe("App", () => {
 
     expect(getByTestId("app-header")).toBeTruthy();
     expect(getByTestId("app-body")).toBeTruthy();
+    expect(getByTestId("app-body-text-search-prompt")).toBeTruthy();
   });
 
   it("fetches data when setSearchTerm is invoked with a non empty string and renders results", async () => {
@@ -56,6 +57,25 @@ describe("App", () => {
     });
   });
 
+  it("shows a messages if no results were found after fetch", async () => {
+    searchMovies.mockImplementationOnce(() => Promise.resolve({ results: [] }));
+
+    const { getByTestId } = render(<App />);
+
+    const input = getByTestId("search-bar-input");
+    const submitButton = getByTestId("search-bar-submit-button");
+    await act(async () => {
+      fireEvent.change(input, { target: { value: "helxo" } });
+      fireEvent.click(submitButton);
+    });
+
+    expect(searchMovies).toHaveBeenCalledWith("helxo");
+
+    await waitFor(() => {
+      expect(getByTestId("app-body-text-noResults")).toBeTruthy();
+    });
+  });
+
   it("does NOT fetch data when setSearchTerm is invoked with an empty string and clears the results", async () => {
     const { getByTestId } = render(<App />);
 
@@ -69,7 +89,7 @@ describe("App", () => {
     expect(searchMovies).not.toHaveBeenCalled();
 
     await waitFor(() => {
-      expect(getByTestId("app-body").innerHTML).toHaveLength(0);
+      expect(getByTestId("app-body-text-search-prompt")).toBeTruthy();
     });
   });
 });

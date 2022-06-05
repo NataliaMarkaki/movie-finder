@@ -4,7 +4,7 @@ import { searchMovies } from "../services/searchMovies";
 
 import SearchBar from "../components/SearchBar/SearchBar";
 import Card from "../components/Card/Card";
-import { Header, Section } from "./App.styles";
+import { Header, Section, Text } from "./App.styles";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -43,6 +43,16 @@ const App = () => {
             overview={overview}
           />
         ))}
+        {movies.length === 0 && searchTerm && (
+          <Text data-testid="app-body-text-noResults">
+            No results for {searchTerm}...
+          </Text>
+        )}
+        {movies.length === 0 && !searchTerm && (
+          <Text data-testid="app-body-text-search-prompt">
+            Please, search for a movie...
+          </Text>
+        )}
       </Section>
     </>
   );
