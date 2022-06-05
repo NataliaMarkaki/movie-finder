@@ -16,9 +16,11 @@ const App = () => {
 
   useEffect(() => {
     async function fetchData() {
+      // request data only if the query isn't empty
       if (Boolean(searchTerm)) {
         await fetchMovieData();
       } else {
+        // empty the list when query is empty
         setMovies([]);
       }
     }
