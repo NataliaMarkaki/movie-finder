@@ -15,7 +15,7 @@ const SearchBar = ({ setSearchTerm }) => {
   };
 
   return (
-    <Form onSubmit={onFormSubmit} role="search">
+    <Form onSubmit={onFormSubmit} role="search" data-testid="search-bar-form">
       <Label htmlFor="search">Search for a movie</Label>
       <Input
         id="search"
@@ -23,8 +23,11 @@ const SearchBar = ({ setSearchTerm }) => {
         placeholder="Type something..."
         value={searchQuery}
         onChange={onInputChange}
+        data-testid="search-bar-input"
       />
-      <Button type="submit">Search</Button>
+      <Button type="submit" data-testid="search-bar-submit-button">
+        Search
+      </Button>
     </Form>
   );
 };
